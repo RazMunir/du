@@ -1,0 +1,25 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+#dataForm {
+    margin-bottom: 20px;
+}
+
+#dataDisplay {
+    border: 2px solid #ccc;
+    padding: 10px;
+}
+
+.data-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 5px dashed #eeef;
+}
+
+.data-item button {
+    margin-left: 10px;
+}
