@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <h1>RMD | du</h1>
+            </div>
+            
+            <div class="nav-links">
+                <div class="nav-link active">
+                    <i class="fas fa-th-large"></i>
+                    <span><a href="#">Category</a></span>
+                </div>
+                <div class="nav-link">
+                    <i class="fas fa-building"></i>
+                    <span><a href="../item/index.html">Item</a></span>
+                </div>
+                <div class="nav-link">
+                    <i class="fas fa-building"></i>
+                    <span><a href="../item/form.html">Item Form</a></span>
+                </div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">du</div>
+                <div class="user-details">
+                    <h3>John Doe</h3>
+                    <p>Property Manager</p>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar end -->
+        
+        <!-- Main-Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="search-box">
+                    <i class="fas lfa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="top-actions">
+                    <div class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div>
+            </div>  
+            <!-- end topBar -->  
+            <div class="content-area">
+                <!-- header -->
+                <div class="dashboard-header">
+                    <h2>Dashboard</h2>
+                    <button class="btn btn-primary" onclick="location.href='../index.html';">
+                        <i class="fas fa-plus"></i> Add Property
+                    </button>
+                </div>
+                <!-- end header -->
+                <!-- stats cards -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon tenants">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Active Tenants</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon properties">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Properties</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end stats cards -->
+                
+                <!-- Add Form -->
+                <div class="card">
+                    <div class="section-header">
+                        <h2>Update Item Data</h2>
+                        <button class="btn btn-primary" id="saveLSBtn"><i class="fas fa-save"></i> Save In LS
+                        </button>
+                    </div>
+                    <form id="categoryForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Code
+                            </label>
+                            <input type="text" id="code" placeholder="Enter Code">
+                        </div>
+                       
+                    <div class="form-actions">
+                            <button type="submit" class="btn-primary form-btn">
+                                <i class="fas fa-save"></i>Add
+                            </button>
+                            <button type="button" id="deleteLastBtn" class="btn-secondary form-btn">
+                                <i class="fas fa-times"></i>Delete
+                            </button>
+                      </div>
+                    </form>
+                </div>
+                <!-- end Add Form -->
+                
+                <!-- Recent Payments Table -->
+                <div class="section-header">
+                    <h3 class="section-title">Categories</h3>
+                    <div class="date-display">
+                        <i class="fas fa-calendar-alt"></i> August 19, 2023
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                         <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Code</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoriesList"> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <footer>
+                <p>© 2025 | Powered by</p>
+                <img src="../durmd.svg" alt="" hight="100" width="150">
+            </footer>
+                                
+        </div>
+        
+    </div>
+    
+    <script src="../js/ls.js"></script>
+    <script src="script.js"></script>
+    
+        
+</body>
+</html>
+            </footer>
+                                
+        </div>
+        
+    </div>
+    
+        
+</body>
+</html>
