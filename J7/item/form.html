@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    
+    <div class="card">
+        <div class="header">
+            <h2>Update Item Data</h2>
+            <button class="btn btn-primary" id="saveLSBtn">
+                <i class="fas fa-save"></i> Save In LS
+            </button>
+        </div>
+        <form id="itemForm">
+            <div class="form-group">
+                <label for="id">Item Id</label>
+                <input type="text" id="id" placeholder="Enter Item Id">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="code">Code</label>
+                    <input type="text" id="code" placeholder="Enter Code">
+                </div>
+                <div class="form-group">
+                    <label for="ccode">Category Code</label>
+                    <input type="text" id="ccode" placeholder="Enter Category Code">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="text" id="img" placeholder="Enter Image">
+            </div>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" id="name" placeholder="Enter Name">
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary form-btn">
+                    <i class="fas fa-save"></i> Update Item
+                </button>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary form-btn"><i class="fas fa-plus"></i> Add New
+                </button>
+                <button type="button" id="deleteLastItem" class="btn-secondary form-btn"><i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+        <p>© 2025 | Powered by</p>
+        <img src="../durmd.svg" alt="" hight="150" width="150">
+    </footer>
+    
+    <script src="../js/ls.js"></script>
+    <script src="form.js"></script>
+    
+</body>
+</html>
+
+
+<!-- {
+  "ccode": "0",
+  "code": "G0001",
+  "id": "1",
+  "img": "img\/pumpkin.png",
+  "name": "Capa Dry"
+}-->
