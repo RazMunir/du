@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>duRMD Logo</title>
+
+  <!-- Import Recoleta from Google Fonts (via CSS kit) -->
+  <link href="https://fonts.googleapis.com/css2?family=Recoleta:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f1f5f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .logo {
+      width: 80%;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Inline SVG with Recoleta font -->
+  <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280">
+    <defs>
+      <linearGradient id="gradRecoleta" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ec4899"/>
+        <stop offset="50%" stop-color="#8b5cf6"/>
+        <stop offset="100%" stop-color="#06b6d4"/>
+      </linearGradient>
+      <filter id="softShadowRecoleta" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.25"/>
+      </filter>
+    </defs>
+
+    <!-- Background box -->
+    <rect rx="24" ry="24" x="16" y="16" width="768" height="248" fill="#0f172a"/>
+
+    <!-- Text with Recoleta font -->
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+          font-family="'Recoleta', serif" font-size="150" font-weight="700"
+          fill="url(#gradRecoleta)" stroke="#ffffff" stroke-width="2"
+          filter="url(#softShadowRecoleta)">
+      duRMD
+    </text>
+  </svg>
+</body>
+</html>
