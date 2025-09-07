@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="item-container">
+    <div class="products-header">
+        <h2>Product List</h2>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search products...">
+        </div>
+        <div class="date-display">
+                        <i class="fas fa-calendar-alt"></i><div id="dateDisplay">August 19, 2023</div>
+                    </div>
+    </div>
+    <div class="table-container">
+        <table id="itemsTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="itemsList">
+                
+            </tbody>
+        </table>
+    </div>
+  </div>
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>
+
+<!-- 
+{
+  "date": "2023-10-19",
+  "des": "Rukn Al Bahar",
+  "icode": "G0000-0",
+  "id": "0",
+  "price": "245",
+  "qty": "10",
+  "unit": "kg"
+}
+ -->
