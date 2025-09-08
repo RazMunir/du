@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>CSS Variable Color Plate</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --danger: #e63946;
+            --warning: #ff9e00;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .color-plate {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .color-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .color-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .color-swatch {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .color-info {
+            padding: 20px;
+            background: white;
+        }
+        
+        .color-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .color-hex {
+            font-family: monospace;
+            font-size: 1rem;
+            padding: 5px 10px;
+            background: var(--light-gray);
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .color-description {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .applications {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .applications h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        .app-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .app-card {
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .app-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .app-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .app-description {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .color-plate {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .color-plate {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Variable Color Plate</h1>
+            <p class="subtitle">A visual reference for your design system's color variables with practical application examples</p>
+        </header>
+        
+        <main>
+            <div class="color-plate">
+                <!-- Primary Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--primary);">
+                        <span style="color: white; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 20px;">Primary</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--primary</h3>
+                        <div class="color-hex">#4361ee</div>
+                        <p class="color-description">Main brand color used for primary buttons, important links, and key accents.</p>
+                    </div>
+                </div>
+                
+                <!-- Secondary Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--secondary);">
+                        <span style="color: white; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 20px;">Secondary</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--secondary</h3>
+                        <div class="color-hex">#3f37c9</div>
+                        <p class="color-description">Used for secondary actions, complementary elements, and as a hover state.</p>
+                    </div>
+                </div>
+                
+                <!-- Success Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--success);">
+                        <span style="color: black; background: rgba(255,255,255,0.3); padding: 5px 10px; border-radius: 20px;">Success</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--success</h3>
+                        <div class="color-hex">#4cc9f0</div>
+                        <p class="color-description">Indicates successful operations, positive status, and completion states.</p>
+                    </div>
+                </div>
+                
+                <!-- Light Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--light); border: 1px solid var(--border);">
+                        <span style="color: var(--dark); background: rgba(255,255,255,0.5); padding: 5px 10px; border-radius: 20px;">Light</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--light</h3>
+                        <div class="color-hex">#f8f9fa</div>
+                        <p class="color-description">Background color for light-themed sections and cards. Off-white shade.</p>
+                    </div>
+                </div>
+                
+                <!-- Dark Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--dark);">
+                        <span style="color: white; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 20px;">Dark</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--dark</h3>
+                        <div class="color-hex">#212529</div>
+                        <p class="color-description">Primary text color and dark UI elements. Almost black shade.</p>
+                    </div>
+                </div>
+                
+                <!-- Danger Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--danger);">
+                        <span style="color: white; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 20px;">Danger</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--danger</h3>
+                        <div class="color-hex">#e63946</div>
+                        <p class="color-description">Indicates errors, destructive actions, and critical alerts.</p>
+                    </div>
+                </div>
+                
+                <!-- Warning Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--warning);">
+                        <span style="color: black; background: rgba(255,255,255,0.3); padding: 5px 10px; border-radius: 20px;">Warning</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--warning</h3>
+                        <div class="color-hex">#ff9e00</div>
+                        <p class="color-description">Used for warnings, pending states, and attention-required indicators.</p>
+                    </div>
+                </div>
+                
+                <!-- Gray Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--gray);">
+                        <span style="color: white; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 20px;">Gray</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--gray</h3>
+                        <div class="color-hex">#6c757d</div>
+                        <p class="color-description">Secondary text, disabled states, and mid-tone UI elements.</p>
+                    </div>
+                </div>
+                
+                <!-- Light Gray Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--light-gray); border: 1px solid var(--border);">
+                        <span style="color: var(--dark); background: rgba(255,255,255,0.5); padding: 5px 10px; border-radius: 20px;">Light Gray</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--light-gray</h3>
+                        <div class="color-hex">#e9ecef</div>
+                        <p class="color-description">Subtle backgrounds, borders, and disabled elements.</p>
+                    </div>
+                </div>
+                
+                <!-- Border Color -->
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--border); border: 1px solid var(--border);">
+                        <span style="color: var(--dark); background: rgba(255,255,255,0.5); padding: 5px 10px; border-radius: 20px;">Border</span>
+                    </div>
+                    <div class="color-info">
+                        <h3 class="color-name">--border</h3>
+                        <div class="color-hex">#dee2e6</div>
+                        <p class="color-description">Default border color for UI elements like cards, inputs, and dividers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="applications">
+                <h2>Practical Applications</h2>
+                <div class="app-container">
+                    <div class="app-card" style="background-color: rgba(67, 97, 238, 0.1);">
+                        <div class="app-icon" style="background-color: var(--primary); color: white;">
+                            ✓
+                        </div>
+                        <h3 class="app-title">Primary Actions</h3>
+                        <p class="app-description">Buttons, important links, and main CTAs should use --primary to stand out.</p>
+                    </div>
+                    
+                    <div class="app-card" style="background-color: rgba(228, 57, 70, 0.1);">
+                        <div class="app-icon" style="background-color: var(--danger); color: white;">
+                            !
+                        </div>
+                        <h3 class="app-title">Error States</h3>
+                        <p class="app-description">Use --danger for error messages, validation issues, and destructive actions.</p>
+                    </div>
+                    
+                    <div class="app-card" style="background-color: rgba(76, 201, 240, 0.1);">
+                        <div class="app-icon" style="background-color: var(--success); color: black;">
+                            ↑
+                        </div>
+                        <h3 class="app-title">Positive Feedback</h3>
+                        <p class="app-description">--success indicates successful operations and positive outcomes.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>CSS Color Palette System | Built with your custom CSS variables</p>
+            <p>Shadow: <code>var(--shadow)</code> applied to all cards</p>
+        </footer>
+    </div>
+</body>
+</html>
