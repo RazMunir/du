@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
+  <title>E-Commerce Admin - Add Product</title>
+  <link rel="stylesheet" href="style_dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 class="logo">ShopAdmin</h2>
+    <nav>
+      <a href="#">Dashboard</a>
+      <a href="#">Products</a>
+      <a href="#">Orders</a>
+      <a href="#">Customers</a>
+      <a href="#">Settings</a>
+      <a href="#">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <span>Welcome, Admin</span>
+      <div class="top-actions">
+        <button>🔔</button>
+        <img src="https://via.placeholder.com/35" alt="Admin Avatar">
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="page-content">
+      <div class="form-card">
+        <h2>Add New Product</h2>
+        <form>
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" placeholder="Enter product name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price ($)</label>
+            <input type="number" id="price" placeholder="Enter price" required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option value="">Select category</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Home & Kitchen</option>
+              <option>Sports</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Enter product description" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Product Image</label>
+            <input type="file" id="image" accept="image/*">
+          </div>
+
+          <button type="submit" class="btn-submit">Add Product</button>
+        </form>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
