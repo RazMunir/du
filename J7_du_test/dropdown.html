@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Dynamic Dropdown Population</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .description {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .dropdown-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .result {
+            margin-top: 10px;
+            padding: 12px;
+            background-color: #e8f4fc;
+            border-radius: 4px;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        
+        .code-container {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        
+        .highlight {
+            color: #f39c12;
+        }
+        
+        @media (max-width: 600px) {
+            .input-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Dropdown Population</h1>
+        <p class="description">Examples of populating dropdowns using JavaScript</p>
+        
+        <!-- Example 1: Populate from Array -->
+        <div class="dropdown-section">
+            <h2>1. Populate from JavaScript Array</h2>
+            <select id="arrayDropdown">
+                <option value="">Select a programming language</option>
+            </select>
+            <div class="result" id="arrayResult">Selected value will appear here</div>
+            <div class="code-container">
+// JavaScript array
+const languages = ["JavaScript", "Python", "Java", "C#", "PHP", "Ruby", "Swift"];
+
+// Populate dropdown
+const dropdown = document.getElementById('arrayDropdown');
+languages.forEach(lang => {
+    const option = document.createElement('option');
+    option.value = lang.toLowerCase();
+    option.textContent = lang;
+    dropdown.appendChild(option);
+});
+
+// Event listener
+dropdown.addEventListener('change', function() {
+    document.getElementById('arrayResult').textContent = 
+        this.value ? `You selected: ${this.value}` : 'Please select an option';
+});
+            </div>
+        </div>
+        
+        <!-- Example 2: Populate from Object -->
+        <div class="dropdown-section">
+            <h2>2. Populate from JavaScript Object</h2>
+            <select id="objectDropdown">
+                <option value="">Select a framework</option>
+            </select>
+            <div class="result" id="objectResult">Selected value will appear here</div>
+            <div class="code-container">
+// JavaScript object
+const frameworks = {
+    "react": "React",
+    "vue": "Vue.js",
+    "angular": "Angular",
+    "svelte": "Svelte",
+    "ember": "Ember.js"
+};
+
+// Populate dropdown
+const frameworkDropdown = document.getElementById('objectDropdown');
+for (const [value, text] of Object.entries(frameworks)) {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = text;
+    frameworkDropdown.appendChild(option);
+}
+
+// Event listener
+frameworkDropdown.addEventListener('change', function() {
+    document.getElementById('objectResult').textContent = 
+        this.value ? `You selected: ${this.value} (${frameworks[this.value]})` : 'Please select an option';
+});
+            </div>
+        </div>
+        
+        <!-- Example 3: Add Custom Options -->
+        <div class="dropdown-section">
+            <h2>3. Add Custom Options Dynamically</h2>
+            <div class="input-group">
+                <input type="text" id="newOptionInput" placeholder="Enter new option">
+                <button id="addOptionBtn">Add Option</button>
+            </div>
+            <select id="customDropdown">
+                <option value="">Select an item</option>
+            </select>
+            <div class="result" id="customResult">Selected value will appear here</div>
+            <div class="code-container">
+// Add custom options
+document.getElementById('addOptionBtn').addEventListener('click', function() {
+    const input = document.getElementById('newOptionInput');
+    const optionText = input.value.trim();
+    
+    if (optionText) {
+        const dropdown = document.getElementById('customDropdown');
+        const option = document.createElement('option');
+        option.value = optionText.toLowerCase().replace(/\s+/g, '_');
+        option.textContent = optionText;
+        dropdown.appendChild(option);
+        
+        input.value = '';
+        input.focus();
+    }
+});
+
+// Event listener
+document.getElementById('customDropdown').addEventListener('change', function() {
+    document.getElementById('customResult').textContent = 
+        this.value ? `You selected: ${this.value}` : 'Please select an option';
+});
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Example 1: Populate from Array
+        const languages = ["JavaScript", "Python", "Java", "C#", "PHP", "Ruby", "Swift"];
+        const dropdown = document.getElementById('arrayDropdown');
+        
+        languages.forEach(lang => {
+            const option = document.createElement('option');
+            option.value = lang.toLowerCase();
+            option.textContent = lang;
+            dropdown.appendChild(option);
+        });
+        
+        dropdown.addEventListener('change', function() {
+            document.getElementById('arrayResult').textContent = 
+                this.value ? `You selected: ${this.value}` : 'Please select an option';
+        });
+        
+        // Example 2: Populate from Object
+        const frameworks = {
+            "react": "React",
+            "vue": "Vue.js",
+            "angular": "Angular",
+            "svelte": "Svelte",
+            "ember": "Ember.js"
+        };
+        
+        const frameworkDropdown = document.getElementById('objectDropdown');
+        for (const [value, text] of Object.entries(frameworks)) {
+            const option = document.createElement('option');
+            option.value = value;
+            option.textContent = text;
+            frameworkDropdown.appendChild(option);
+        }
+        
+        frameworkDropdown.addEventListener('change', function() {
+            document.getElementById('objectResult').textContent = 
+                this.value ? `You selected: ${this.value} (${frameworks[this.value]})` : 'Please select an option';
+        });
+        
+        // Example 3: Add Custom Options
+        document.getElementById('addOptionBtn').addEventListener('click', function() {
+            const input = document.getElementById('newOptionInput');
+            const optionText = input.value.trim();
+            
+            if (optionText) {
+                const dropdown = document.getElementById('customDropdown');
+                const option = document.createElement('option');
+                option.value = optionText.toLowerCase().replace(/\s+/g, '_');
+                option.textContent = optionText;
+                dropdown.appendChild(option);
+                
+                input.value = '';
+                input.focus();
+            }
+        });
+        
+        document.getElementById('customDropdown').addEventListener('change', function() {
+            document.getElementById('customResult').textContent = 
+                this.value ? `You selected: ${this.value}` : 'Please select an option';
+        });
+    </script>
+</body>
+</html>
