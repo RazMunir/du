@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Business Cost Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-chart-line"></i>
+            <h1>BizCost</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fas fa-wallet"></i> Expenses</a></li>
+            <li><a href="#"><i class="fas fa-chart-pie"></i> Reports</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+        </ul>
+        <div style="position: absolute; bottom: 30px; width: calc(100% - 40px);">
+            <button class="btn-primary" style="width: 100%;">
+                <i class="fas fa-plus"></i> Add Expense
+            </button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h2>Daily Expense Tracker</h2>
+            <div class="date-display">
+                <i class="fas fa-calendar-alt"></i> August 19, 2023
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2><i class="fas fa-plus-circle"></i> Add New Expense</h2>
+                <form id="expense-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expense-date">Date</label>
+                            <input type="date" id="expense-date" value="2023-08-19">
+                        </div>
+                        <div class="form-group">
+                            <label for="expense-amount">Amount ($)</label>
+                            <input type="number" id="expense-amount" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-description">Description</label>
+                        <input type="text" id="expense-description" placeholder="Enter expense description">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-category">Category</label>
+                        <select id="expense-category">
+                            <option value="supplies">Office Supplies</option>
+                            <option value="travel">Travel & Transportation</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="food">Food & Entertainment</option>
+                            <option value="other">Other Expenses</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-plus"></i> Add Expense
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="edit-form" class="edit-form">
+                    <h2><i class="fas fa-edit"></i> Edit Expense</h2>
+                    <form id="update-form">
+                        <input type="hidden" id="edit-id">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-date">Date</label>
+                                <input type="date" id="edit-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-amount">Amount ($)</label>
+                                <input type="number" id="edit-amount" placeholder="0.00">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-description">Description</label>
+                            <input type="text" id="edit-description">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-category">Category</label>
+                            <select id="edit-category">
+                                <option value="supplies">Office Supplies</option>
+                                <option value="travel">Travel & Transportation</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="food">Food & Entertainment</option>
+                                <option value="other">Other Expenses</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i> Update Expense
+                            </button>
+                            <button type="button" id="cancel-edit" class="btn-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-chart-pie"></i> Expense Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-item primary">
+                        <div class="summary-value">$1,842</div>
+                        <div class="summary-label">Total Today</div>
+                    </div>
+                    <div class="summary-item warning">
+                        <div class="summary-value">$385</div>
+                        <div class="summary-label">Daily Average</div>
+                    </div>
+                    <div class="summary-item danger">
+                        <div class="summary-value">$560</div>
+                        <div class="summary-label">Highest Expense</div>
+                    </div>
+                    <div class="summary-item success">
+                        <div class="summary-value">27</div>
+                        <div class="summary-label">Expenses Today</div>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 30px;"><i class="fas fa-chart-bar"></i> Expense Distribution</h2>
+                <div class="chart-container">
+                    <div class="chart-bar" style="height: 70%; background: #4cc9f0;">
+                        <div class="chart-value">$640</div>
+                        <div class="chart-label">Supplies</div>
+                    </div>
+                    <div class="chart-bar" style="height: 90%; background: #f72585;">
+                        <div class="chart-value">$890</div>
+                        <div class="chart-label">Travel</div>
+                    </div>
+                    <div class="chart-bar" style="height: 50%; background: #ff9e00;">
+                        <div class="chart-value">$240</div>
+                        <div class="chart-label">Utilities</div>
+                    </div>
+                    <div class="chart-bar" style="height: 65%; background: #3a0ca3;">
+                        <div class="chart-value">$520</div>
+                        <div class="chart-label">Food</div>
+                    </div>
+                    <div class="chart-bar" style="height: 40%; background: #6c757d;">
+                        <div class="chart-value">$180</div>
+                        <div class="chart-label">Other</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-receipt"></i> Today's Expenses <span style="font-size: 1rem; color: var(--gray);">(Click on any expense to edit)</span></h2>
+            <table id="expense-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-id="1">
+                        <td>2023-08-19</td>
+                        <td>Office printer paper</td>
+                        <td><span class="expense-category category-supplies">Office Supplies</span></td>
+                        <td>$85.00</td>
+                        <td>
+                            <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn" data-id="1"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-id="2">
+                        <td>2023-08-19</td>
+                        <td>Client lunch meeting</td>
+                        <td><span class="expense-category category-food">Food & Entertainment</span></td>
+                        <td>$124.50</td>
+                        <td>
+                            <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn" data-id="2"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-id="3">
+                        <td>2023-08-19</td>
+                        <td>Monthly internet bill</td>
+                        <td><span class="expense-category category-utilities">Utilities</span></td>
+                        <td>$89.99</td>
+                        <td>
+                            <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn" data-id="3"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-id="4">
+                        <td>2023-08-19</td>
+                        <td>Taxi to client office</td>
+                        <td><span class="expense-category category-travel">Travel & Transportation</span></td>
+                        <td>$45.00</td>
+                        <td>
+                            <button class="action-btn edit-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn" data-id="4"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-id="5">
+                        <td>2023-08-19</td>
+                        <td>Conference room supplies</td>
+                        <td><span class="expense-category category-supplies">Office Supplies</span></td>
+                        <td>$32.75</td>
+                        <td>
+                            <button class="action-btn edit-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn" data-id="5"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>© 2023 Business Cost Tracker | Monitor your daily expenses efficiently</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification">
+        Expense updated successfully!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

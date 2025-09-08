@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Daily Business Cost Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --dark: #3a0ca3;
+            --light: #f8f9fa;
+            --danger: #f72585;
+            --warning: #ff9e00;
+            --gray: #6c757d;
+            --border: #dee2e6;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .card h2 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        button {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button i {
+            margin-right: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--light);
+        }
+
+        .summary-item.primary {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+        }
+
+        .summary-item.warning {
+            background: linear-gradient(135deg, #ff9e00, #ff6d00);
+            color: white;
+        }
+
+        .summary-item.danger {
+            background: linear-gradient(135deg, #f72585, #b5179e);
+            color: white;
+        }
+
+        .summary-item.success {
+            background: linear-gradient(135deg, #4cc9f0, #4895ef);
+            color: white;
+        }
+
+        .summary-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .summary-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: var(--light);
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: rgba(67, 97, 238, 0.03);
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .edit-btn {
+            background-color: var(--warning);
+            color: white;
+            margin-right: 5px;
+        }
+
+        .delete-btn {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .expense-category {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .category-supplies {
+            background-color: rgba(76, 201, 240, 0.2);
+            color: #4895ef;
+        }
+
+        .category-travel {
+            background-color: rgba(247, 37, 133, 0.2);
+            color: #f72585;
+        }
+
+        .category-utilities {
+            background-color: rgba(255, 158, 0, 0.2);
+            color: #ff9e00;
+        }
+
+        .category-food {
+            background-color: rgba(58, 12, 163, 0.2);
+            color: #3a0ca3;
+        }
+
+        .category-other {
+            background-color: rgba(108, 117, 125, 0.2);
+            color: var(--gray);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .chart-container {
+            margin-top: 25px;
+            height: 250px;
+            position: relative;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 12%;
+            border-radius: 5px 5px 0 0;
+            transition: height 0.5s ease;
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            width: 12%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Daily Business Cost Tracker</h1>
+            <p>Monitor and manage your daily business expenses efficiently</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2><i class="fas fa-plus-circle"></i> Add New Expense</h2>
+                <form id="expense-form">
+                    <div class="form-group">
+                        <label for="expense-date">Date</label>
+                        <input type="date" id="expense-date" value="2023-08-19">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-description">Description</label>
+                        <input type="text" id="expense-description" placeholder="Enter expense description">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-category">Category</label>
+                        <select id="expense-category">
+                            <option value="supplies">Office Supplies</option>
+                            <option value="travel">Travel & Transportation</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="food">Food & Entertainment</option>
+                            <option value="other">Other Expenses</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-amount">Amount ($)</label>
+                        <input type="number" id="expense-amount" placeholder="Enter amount">
+                    </div>
+                    <button type="submit"><i class="fas fa-plus"></i> Add Expense</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-chart-pie"></i> Expense Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-item primary">
+                        <div class="summary-value">$1,842</div>
+                        <div class="summary-label">Total Today</div>
+                    </div>
+                    <div class="summary-item warning">
+                        <div class="summary-value">$385</div>
+                        <div class="summary-label">Daily Average</div>
+                    </div>
+                    <div class="summary-item danger">
+                        <div class="summary-value">$560</div>
+                        <div class="summary-label">Highest Expense</div>
+                    </div>
+                    <div class="summary-item success">
+                        <div class="summary-value">27</div>
+                        <div class="summary-label">Expenses Today</div>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 30px;"><i class="fas fa-chart-bar"></i> Expense Distribution</h2>
+                <div class="chart-container">
+                    <div style="left: 5%; height: 70%;" class="chart-bar" id="supplies-bar"></div>
+                    <div style="left: 5%;" class="chart-label">Supplies</div>
+                    
+                    <div style="left: 23%; height: 90%;" class="chart-bar" id="travel-bar"></div>
+                    <div style="left: 23%;" class="chart-label">Travel</div>
+                    
+                    <div style="left: 41%; height: 50%;" class="chart-bar" id="utilities-bar"></div>
+                    <div style="left: 41%;" class="chart-label">Utilities</div>
+                    
+                    <div style="left: 59%; height: 65%;" class="chart-bar" id="food-bar"></div>
+                    <div style="left: 59%;" class="chart-label">Food</div>
+                    
+                    <div style="left: 77%; height: 40%;" class="chart-bar" id="other-bar"></div>
+                    <div style="left: 77%;" class="chart-label">Other</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-receipt"></i> Today's Expenses</h2>
+            <table id="expense-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-08-19</td>
+                        <td>Office printer paper</td>
+                        <td><span class="expense-category category-supplies">Office Supplies</span></td>
+                        <td>$85.00</td>
+                        <td>
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-19</td>
+                        <td>Client lunch meeting</td>
+                        <td><span class="expense-category category-food">Food & Entertainment</span></td>
+                        <td>$124.50</td>
+                        <td>
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-19</td>
+                        <td>Monthly internet bill</td>
+                        <td><span class="expense-category category-utilities">Utilities</span></td>
+                        <td>$89.99</td>
+                        <td>
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-19</td>
+                        <td>Taxi to client office</td>
+                        <td><span class="expense-category category-travel">Travel & Transportation</span></td>
+                        <td>$45.00</td>
+                        <td>
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-19</td>
+                        <td>Conference room supplies</td>
+                        <td><span class="expense-category category-supplies">Office Supplies</span></td>
+                        <td>$32.75</td>
+                        <td>
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>© 2023 Business Cost Tracker | Monitor your daily expenses efficiently</p>
+        </footer>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('expense-date').valueAsDate = new Date();
+        
+        // Add color to chart bars
+        document.getElementById('supplies-bar').style.backgroundColor = '#4cc9f0';
+        document.getElementById('travel-bar').style.backgroundColor = '#f72585';
+        document.getElementById('utilities-bar').style.backgroundColor = '#ff9e00';
+        document.getElementById('food-bar').style.backgroundColor = '#3a0ca3';
+        document.getElementById('other-bar').style.backgroundColor = '#6c757d';
+        
+        // Form submission handler
+        document.getElementById('expense-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const date = document.getElementById('expense-date').value;
+            const description = document.getElementById('expense-description').value;
+            const category = document.getElementById('expense-category').value;
+            const amount = document.getElementById('expense-amount').value;
+            
+            if(!description || !amount) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Create new row
+            const table = document.getElementById('expense-table').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            
+            // Add cells
+            const dateCell = newRow.insertCell(0);
+            const descCell = newRow.insertCell(1);
+            const catCell = newRow.insertCell(2);
+            const amtCell = newRow.insertCell(3);
+            const actionCell = newRow.insertCell(4);
+            
+            // Set cell content
+            dateCell.textContent = date;
+            descCell.textContent = description;
+            
+            // Category with styling
+            const categoryText = document.getElementById('expense-category').options[document.getElementById('expense-category').selectedIndex].text;
+            catCell.innerHTML = `<span class="expense-category category-${category}">${categoryText}</span>`;
+            
+            amtCell.textContent = '$' + parseFloat(amount).toFixed(2);
+            
+            // Action buttons
+            actionCell.innerHTML = `
+                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+            `;
+            
+            // Add delete functionality to new button
+            actionCell.querySelector('.delete-btn').addEventListener('click', function() {
+                table.deleteRow(newRow.rowIndex - 1);
+            });
+            
+            // Reset form
+            document.getElementById('expense-form').reset();
+            document.getElementById('expense-date').valueAsDate = new Date();
+        });
+        
+        // Add delete functionality to existing buttons
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                row.parentNode.removeChild(row);
+            });
+        });
+    </script>
+</body>
+</html>
